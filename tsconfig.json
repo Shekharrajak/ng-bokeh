@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-bokeh": [
+        "dist/ng-bokeh"
+      ],
+      "ng-bokeh/*": [
+        "dist/ng-bokeh/*"
+      ]
+    }
   }
 }

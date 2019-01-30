@@ -2,5 +2,169 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ng-bokeh": {
+      "root": "projects/ng-bokeh",
+      "sourceRoot": "projects/ng-bokeh/src",
+      "projectType": "library",
+      "prefix": "bokeh",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-bokeh/tsconfig.lib.json",
+            "project": "projects/ng-bokeh/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-bokeh/src/test.ts",
+            "tsConfig": "projects/ng-bokeh/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-bokeh/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-bokeh/tsconfig.lib.json",
+              "projects/ng-bokeh/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "bokeh-tester": {
+      "root": "projects/bokeh-tester/",
+      "sourceRoot": "projects/bokeh-tester/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bokeh-tester",
+            "index": "projects/bokeh-tester/src/index.html",
+            "main": "projects/bokeh-tester/src/main.ts",
+            "polyfills": "projects/bokeh-tester/src/polyfills.ts",
+            "tsConfig": "projects/bokeh-tester/tsconfig.app.json",
+            "assets": [
+              "projects/bokeh-tester/src/favicon.ico",
+              "projects/bokeh-tester/src/assets"
+            ],
+            "styles": [
+              "projects/bokeh-tester/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bokeh-tester/src/environments/environment.ts",
+                  "with": "projects/bokeh-tester/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bokeh-tester:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bokeh-tester:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bokeh-tester:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bokeh-tester/src/test.ts",
+            "polyfills": "projects/bokeh-tester/src/polyfills.ts",
+            "tsConfig": "projects/bokeh-tester/tsconfig.spec.json",
+            "karmaConfig": "projects/bokeh-tester/karma.conf.js",
+            "styles": [
+              "projects/bokeh-tester/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/bokeh-tester/src/favicon.ico",
+              "projects/bokeh-tester/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bokeh-tester/tsconfig.app.json",
+              "projects/bokeh-tester/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "bokeh-tester-e2e": {
+      "root": "projects/bokeh-tester-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bokeh-tester-e2e/protractor.conf.js",
+            "devServerTarget": "bokeh-tester:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bokeh-tester:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/bokeh-tester-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-bokeh"
 }
