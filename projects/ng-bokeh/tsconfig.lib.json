@@ -15,7 +15,14 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "*": [
+        "../../node_modules/bokehjs/build/js/tree/*",
+        "../../node_modules/bokehjs/build/js/types/*",
+        "../../node_modules/bokehjs/src/lib/external/*"
+      ]
+    },
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

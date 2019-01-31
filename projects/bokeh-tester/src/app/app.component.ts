@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as Bokehjs from 'bokehjs';
 
 @Component({
   selector: 'app-root',

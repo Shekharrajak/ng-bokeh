@@ -24,7 +24,13 @@
       ],
       "ng-bokeh/*": [
         "dist/ng-bokeh/*"
+      ],
+      "*": [
+        "node_modules/bokehjs/build/js/tree/*",
+        "node_modules/bokehjs/build/js/types/*",
+        "node_modules/bokehjs/src/lib/external/*"
       ]
+
     }
   }
 }
