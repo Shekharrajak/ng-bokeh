@@ -12,7 +12,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+Install the dependencies using `npm install`
+
 Run `ng build ng-bokeh` to build the library and usable in bokeh-tester application.
+
+Running the testing Angular application in locahost:4200 : 
+`npm start bokeh-tester`
 
 Run `ng build bokeh-tester` to build the project application. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
